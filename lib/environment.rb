@@ -1,4 +1,4 @@
-require "r_project/cli/version"
+require_relative  "./r_project/version"
 
 module RProject
   module Cli
@@ -6,3 +6,5 @@ module RProject
     # Your code goes here...
   end
 end
+
+require_relative './cli'

@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/environment'
+
+testing = CLI.new
+testing.run
