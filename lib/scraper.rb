@@ -3,11 +3,12 @@ require 'open-uri'
 
 
 # class TeamScraper
-#   def self.team_names
+  @doc = Nokogiri::HTML(open("https://www.mlb.com/team"))
+
+#   def self.teams
     team_pro = []
-    
-    doc = Nokogiri::HTML(open("https://www.mlb.com/team"))
-    teams = doc.css("div.l-grid__content.l-grid__content--inset")
+
+    teams = @doc.css("div.l-grid__content.l-grid__content--inset")
     
     teams.css("div.p-featured-content__body").each do |team|
       name = team.css("div.u-text-h4.u-text-flow").text
@@ -19,12 +20,16 @@ require 'open-uri'
             
             team_pro << team_info
         end
-      puts team_pro
+       team_pro
      #end
   
-#   def 
-    
+#   def self.team_name
+      names = team_pro.map{|name| name[:name]}
+      
+       names
 #   end
+  
+
 # end
 
 
