@@ -42,7 +42,27 @@ require 'open-uri'
         
     # end
     
-    puts team_pro[0][:name]
+    
+    date_time = []
+    
+    schedule = Nokogiri::HTML(open("https://www.mlb.com/orioles")) 
+    
+    datentime = schedule.css("div.g5-component--mlb-scores__panel g5-component--mlb-scores__panel--primary")
+    
+    datentime.css("div.g5-component--mlb-scores__game-info").each do |game|
+      date = schedule.css("span.g5-component--mlb-scores__game-date").text
+      time = schedule.css("span.g5-component--mlb-scores__game-time").text
+        game_info = {
+          :date => date,
+          :time => time
+        }
+        
+        date_time << game_info
+    end
+    
+    puts date_time
+    
+      
     
 
 # end
