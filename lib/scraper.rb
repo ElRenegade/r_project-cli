@@ -12,8 +12,8 @@ require 'open-uri'
     
     teams.css("div.p-featured-content__body").each do |team|
       name = team.css("div.u-text-h4.u-text-flow").text
-      location = team.css("div.p-featured-content__text").text.gsub(/\s+/, ' ')
-      team_url = team.css("a").attribute("href").value
+      location = team.css("div.p-featured-content__text").text.strip      #gsub(/\s+/, ' ') 
+      team_url = team.css("p").css("a").attribute("href").value
       team_info = {:name => name,
             :location => location,
             :team_url => team_url}
@@ -24,11 +24,26 @@ require 'open-uri'
      #end
   
 #   def self.team_name
-      names = team_pro.map{|name| name[:name]}
+      # names = team_pro.map{|name| name[:name]}
       
-       names
+      # names
 #   end
+
+  # def self.next_game
+    # team_site = team_pro.map{|url| url[:team_url]}
+    
+    # team_site
+  # end
   
+    # def self.get_schedule
+        #team_site.each{|site|
+          
+       # }
+        
+    # end
+    
+    puts team_pro[0][:name]
+    
 
 # end
 
