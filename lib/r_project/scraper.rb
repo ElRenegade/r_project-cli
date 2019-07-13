@@ -8,9 +8,9 @@ class RuneScapeUpdates::Scraper
     self.open_url.css(".news-article__details")
   end
   
-  def create_aricles
+  def create_articles
     article_info.each do |article|
-      RunescapeUpdates::Updates.create_info(scapes)
+      RuneScapeUpdates::Updates.create_info(article)
     end
   end
 end

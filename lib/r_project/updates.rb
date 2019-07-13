@@ -1,4 +1,4 @@
-class RunescapeUpdates::Updates
+class RuneScapeUpdates::Updates
   attr_accessor :title, :description, :date
   
   @@all = []
@@ -6,12 +6,12 @@ class RunescapeUpdates::Updates
   def self.create_info(scape)
     self.new(
       scape.css(".news-article__title").text,
-      #scape.css(".news-article__summary").text.delete_suffix("Read More..."),
+      scape.css(".news-article__summary").text.delete_suffix("Read More..."),
       scape.css(".news-article__time").text
       )
   end
   
-  def initialize(title, date)
+  def initialize(title, description, date)
     @title = title
     @description = description
     @date = date
@@ -21,6 +21,11 @@ class RunescapeUpdates::Updates
   def self.all
     @@all
   end
+  
+  def self.find(i)
+    self.all[i-1]
+  end
+  
   
   def self.article_search(num)
     self.all[num-1]
@@ -41,17 +46,3 @@ end
 
 
 
-  #def self.title
-  #     #puts details.collect { |p| "#{p[:title]}" }
-  #   #end
-    
-  #   #def self.title
-  #     # puts details.collect { |p| "#{p[:description]}: #{p[:title]}: #{p[:date]}"}
-  #   #end
-    
-  #   titles = []
-  #   details.each do |person|
-  #   titles << "#{person[:description]}"
-  # end
-  
-  # puts titles

@@ -7,10 +7,17 @@ class RuneScapeUpdates::CLI
   
   def start
     puts "what update would you like to read about"
-    input = gets.strip.to_i
+    print_titles
     
-    update_info(input)
     
-    puts "What  "
+    
+    
   end
+  
+  def print_titles
+    RuneScapeUpdates::Updates.all.each.with_index do |article, index|
+      puts "#{index+1}. #{article.title}"
+    end
+  end
+  
 end
