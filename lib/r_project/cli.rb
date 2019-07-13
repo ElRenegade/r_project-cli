@@ -18,11 +18,10 @@ class RuneScapeUpdates::CLI
       puts "\nINVALID ENTRY PLEASE ENTER A NUMBER FROM THE LIST.\n\n"
       start
     end
-    
-    #selection = RuneScapeUpdates::Updates.find(input.to_i)
    
     print_article(selection)
-    puts "Are you interested in another update summary? Y to read another or N to exit \n"
+    
+    puts "Are you interested in another update summary? Y to read another or N to exit \n\n"
     
     input = gets.strip.downcase
     if input == "y"
@@ -31,7 +30,7 @@ class RuneScapeUpdates::CLI
       puts "Bye! Check in again for the latest OSRS update summaries!"
       exit
     else
-      puts "Invalid entry please try again"
+      puts "\n\nINVALID ENTRY PLEASE ENTER Y or N.\n\n"
       start
     end
     
@@ -45,6 +44,7 @@ class RuneScapeUpdates::CLI
   
   def print_article(selection)
     puts "_____ #{selection.title}_____"
+    puts "___________#{selection.date}___________"
     puts "\n_____________Description____________"
     puts ""
     puts "#{selection.description}\n\n"
