@@ -1,16 +1,25 @@
 class RuneScapeUpdates::CLI
   def run
     RuneScapeUpdates::Scraper.new.create_articles
-    puts "Latest Old School Runescape updates\n"
+    puts "Latest Old School Runescape updates\n\n"
     start
   end
   
   def start
-    puts "Which update would you like to read about? Please select a number\n"
+    puts "Which update would you like to read about? Please select a number:\n\n"
     print_titles
-    input = gets.strip
+    print "\nEnter number:"
+    input = gets.strip.to_i
+    puts ""
     
-    selection = RuneScapeUpdates::Updates.find(input.to_i)
+    if input.between?(1,5)
+      selection = RuneScapeUpdates::Updates.find(input.to_i)
+    else
+      puts "\nINVALID ENTRY PLEASE ENTER A NUMBER FROM THE LIST.\n\n"
+      start
+    end
+    
+    #selection = RuneScapeUpdates::Updates.find(input.to_i)
    
     print_article(selection)
     puts "Are you interested in another update summary? Y to read another or N to exit \n"
