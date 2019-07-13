@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/environment'
+require_relative '../lib/r_project'
 
-testing = CLI.new
+testing = RuneScapeUpdates::CLI.new
 testing.run
