@@ -11,7 +11,7 @@ class RuneScapeUpdates::Updates
       )
   end
   
-  def initialize(title, description, date)
+  def initialize(title=nil, description=nil, date=nil)
     @title = title
     @description = description
     @date = date
