@@ -10,7 +10,7 @@ require 'open-uri'
 
       stuff.css(".news-article__details").each do |update|
       title = update.css(".news-article__title").text
-      description = update.css(".news-article__summary").text.delete_suffix("  Read More...")
+      description = update.css(".news-article__summary").text.delete_suffix("Read More...")
       date = update.css(".news-article__time").text
       info = {:title => title,
         :description => description,
@@ -30,7 +30,10 @@ require 'open-uri'
     # puts details.collect { |p| "#{p[:description]}: #{p[:title]}: #{p[:date]}"}
   #end
   
+  titles = []
   details.each do |person|
-  puts "#{person[:title]}"
+   titles << "#{person[:description]}"
 end
+
+puts titles
 #end
