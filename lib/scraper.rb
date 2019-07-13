@@ -2,30 +2,35 @@ require 'nokogiri'
 require 'open-uri'
 
 
-# class TeamScraper
-  @doc = Nokogiri::HTML(open("https://www.espn.com/mlb/team/_/name/laa/los-angeles-angels"))
+# class Scraper
+    stuff = Nokogiri::HTML(open("https://oldschool.runescape.com/"))
 
 #   def self.teams
-    team_pro = {}
+      details = []
 
-    teams = @doc.css(".upcoming")
-    team_pro[:o_team] = teams.css(".game-info").text
-    team_pro[:date] = teams.css(".game-date").text
-    team_pro[:time] = teams.css(".time").text
-    puts team_pro
-    
-   
- 
-  # if team_pro[0].include?("CHICAGO WHITE SOX")
-  #   puts "yes"
-  # else 
-  #   puts "no"
-  # end
+      stuff.css(".news-article__details").each do |update|
+      title = update.css(".news-article__title").text
+      description = update.css(".news-article__summary").text.delete_suffix("  Read More...")
+      date = update.css(".news-article__time").text
+      info = {:title => title,
+        :description => description,
+        :date => date
+      }
+      
+      details << info
+     end
+      details
+  #end
   
+  #def self.title
+    #puts details.collect { |p| "#{p[:title]}" }
+  #end
   
-# end
-
-
-
-
-
+  #def self.title
+    # puts details.collect { |p| "#{p[:description]}: #{p[:title]}: #{p[:date]}"}
+  #end
+  
+  details.each do |person|
+  puts "#{person[:title]}"
+end
+#end
