@@ -30,7 +30,7 @@ class RuneScapeUpdates::CLI
       puts "Bye! Check in again for the latest OSRS update summaries!"
       exit
     else
-      puts "\n\nINVALID ENTRY PLEASE ENTER Y or N.\n\n"
+      puts "\n\nINVALID ENTRY PROGRAM WILL RESET.\n\n"
       start
     end
     
