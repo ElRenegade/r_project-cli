@@ -2,5 +2,5 @@
 
 require_relative '../lib/r_project'
 
-testing = RuneScapeUpdates::CLI.new
+testing = RuneScapeUpdates::Run.new
 testing.run

@@ -3,6 +3,11 @@ class RuneScapeUpdates::Updates
   
   @@all = []
   
+  
+  def doc
+    @doc = RuneScapeUpdates::Scraper.new.open_url       #Nokogiri::HTML(open("https://oldschool.runescape.com/")) not sure which is better to use.
+  end
+  
   def self.create_info(scape)
     self.new(
       scape.css(".news-article__title").text,
@@ -26,18 +31,14 @@ class RuneScapeUpdates::Updates
     self.all[i-1]
   end
   
-  
-  def self.article_search(num)
-    self.all[num-1]
-  end
+  # def self.article_search(num)
+  #   self.all[num-1]
+  # end
   
   def get_description
     @description = doc.css(".news-article__summary").text.delete_suffix("Read More...")
   end
   
-  def doc
-    @doc = Nokogiri::HTML(open("https://oldschool.runescape.com/"))
-  end
 end
 
 

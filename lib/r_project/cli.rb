@@ -1,9 +1,9 @@
 class RuneScapeUpdates::CLI
-  def run
-    RuneScapeUpdates::Scraper.new.create_articles
-    puts "Latest Old School Runescape updates\n\n"
-    start
-  end
+  # def run
+  #   RuneScapeUpdates::Scraper.new.create_articles           ****Moved to run.rb****
+  #   puts "Latest Old School Runescape updates\n\n"
+  #   start
+  # end
   
   def start
     puts "Which update would you like to read about? Please select a number:\n\n"
