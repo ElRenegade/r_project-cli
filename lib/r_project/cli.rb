@@ -6,6 +6,7 @@ class RuneScapeUpdates::CLI
   # end
   
   def start
+    puts "Latest Old School Runescape updates\n\n"
     puts "Which update would you like to read about? Please select a number:\n\n"
     print_titles
     print "\nEnter number:"

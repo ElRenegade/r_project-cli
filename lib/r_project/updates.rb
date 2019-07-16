@@ -16,7 +16,7 @@ class RuneScapeUpdates::Updates
       )
   end
   
-  def initialize(title=nil, description=nil, date=nil)
+  def initialize(title=nil, description=nil, date=nil)                                                          #Move nokogiri/html stuff into scraper*********
     @title = title
     @description = description
     @date = date
