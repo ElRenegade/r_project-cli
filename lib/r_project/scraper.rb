@@ -1,4 +1,3 @@
-
 class RuneScapeUpdates::Scraper
   def open_url
   Nokogiri::HTML(open("https://oldschool.runescape.com/"))

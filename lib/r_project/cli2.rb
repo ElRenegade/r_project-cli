@@ -1,8 +1,14 @@
 class RuneScapeUpdates::CLI
   def run
-    RuneScapeUpdates::Scraper.new.create_articles           
+    create_articles           
     print_greetings
     start
+  end
+  
+   def create_articles
+    RuneScapeUpdates::Scraper.article_info.each do |article|
+      RuneScapeUpdates::Scraper.create_info(article)
+    end
   end
   
   def start

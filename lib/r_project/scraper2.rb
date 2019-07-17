@@ -1,18 +1,21 @@
 
 class RuneScapeUpdates::Scraper
-  def open_url
+  def self.open_url
   Nokogiri::HTML(open("https://oldschool.runescape.com/"))
   end
 
-  def article_info
+  def self.article_info
     self.open_url.css(".news-article__details")
   end
   
-  def create_articles
-    article_info.each do |article|
-      RuneScapeUpdates::Updates.create_info(article)
-    end
+  def self.create_info(scape)
+    RuneScapeUpdates::Updates.new(
+      scape.css(".news-article__title").text,
+      scape.css(".news-article__summary").text.delete_suffix("Read More..."),
+      scape.css(".news-article__time").text
+      )
   end
+  
 end
 
 
