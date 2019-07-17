@@ -1,42 +1,55 @@
 class RuneScapeUpdates::CLI
-  # def run
-  #   RuneScapeUpdates::Scraper.new.create_articles           ****Moved to run.rb****
-  #   puts "Latest Old School Runescape updates\n\n"
-  #   start
-  # end
+  
+  def run
+    create_articles           
+    print_greetings
+    start
+  end
   
   def start
-    puts "Latest Old School Runescape updates\n\n"
-    puts "Which update would you like to read about? Please select a number:\n\n"
     print_titles
-    print "\nEnter number:"
+    print "\nEnter a number:"
+    print_article(num_validation)
+    puts "Are you interested in another update summary? Y to read another or N to exit \n\n"
+    exit_validation
+  end
+  
+  def print_greetings
+    puts "\nWelcome, here are the latest Old School Runescape updates\n\n"
+    puts "Which update would you like to read about? Please select a number:\n\n"
+  end
+  
+  def create_articles
+    RuneScapeUpdates::Scraper.article_info.each do |article|
+      RuneScapeUpdates::Scraper.create_info(article)
+    end
+  end
+  
+  def num_validation
     input = gets.strip.to_i
-    puts ""
-    
-    if input.between?(1,5)
+    if input.between?(1,RuneScapeUpdates::Updates.all.length)
       selection = RuneScapeUpdates::Updates.find(input.to_i)
     else
       puts "\nINVALID ENTRY PLEASE ENTER A NUMBER FROM THE LIST.\n\n"
-      start
+      print "Enter number:"
+      num_validation
     end
+  end
    
-    print_article(selection)
-    
-    puts "Are you interested in another update summary? Y to read another or N to exit \n\n"
-    
+  def exit_validation
     input = gets.strip.downcase
     if input == "y"
+      puts "\nWhich other update are you interested in?"
       start
     elsif input == "n"
-      puts "Bye! Check in again for the latest OSRS update summaries!"
+      puts "Check in again for the latest OSRS update summaries!"
       exit
     else
-      puts "\n\nINVALID ENTRY PROGRAM WILL RESET.\n\n"
-      start
+      puts "\n\nINVALID ENTRY, select Y to read another or N to exit .\n\n"
+      exit_validation
     end
-    
   end
-  
+
   def print_titles
     RuneScapeUpdates::Updates.all.each.with_index do |article, index|
       puts "#{index+1}. #{article.title}"
@@ -50,5 +63,4 @@ class RuneScapeUpdates::CLI
     puts ""
     puts "#{selection.description}\n\n"
   end
-  
 end
